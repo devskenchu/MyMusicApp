@@ -12,16 +12,18 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var drawerController : MMDrawerController? = nil
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")
         if userId != nil{
-            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let mainPage = mainStoryboard.instantiateViewControllerWithIdentifier("MainPageViewController")
-            let mainPageNav = UINavigationController(rootViewController: mainPage)
-            self.window?.rootViewController = mainPageNav
+//            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//            let mainPage = mainStoryboard.instantiateViewControllerWithIdentifier("MainPageViewController")
+//            let mainPageNav = UINavigationController(rootViewController: mainPage)
+//            self.window?.rootViewController = mainPageNav
+            
+                buildNavigationDrawer()
         }
         return true
     }
@@ -46,6 +48,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func buildNavigationDrawer(){
+        
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainPage: MainPageViewController = mainStoryboard.instantiateViewControllerWithIdentifier("MainPageViewController") as! MainPageViewController
+        
+         let leftSide: LeftSideViewController = mainStoryboard.instantiateViewControllerWithIdentifier("LeftSideViewController") as! LeftSideViewController
+        
+       //  let rightSide: RightSideViewController = mainStoryboard.instantiateViewControllerWithIdentifier("RightSideViewController") as! RightSideViewController
+        
+        let mainPageNav = UINavigationController(rootViewController: mainPage)
+        let leftPageNav = UINavigationController(rootViewController: leftSide)
+        //let rightPageNav = UINavigationController(rootViewController: rightSide)
+        
+        drawerController = MMDrawerController(centerViewController: mainPageNav, leftDrawerViewController: leftPageNav, rightDrawerViewController: nil)
+        
+        drawerController!.openDrawerGestureModeMask = MMOpenDrawerGestureMode.PanningCenterView
+        drawerController!.closeDrawerGestureModeMask = MMCloseDrawerGestureMode.PanningCenterView
+        
+        window?.rootViewController = drawerController
+
     }
 
 

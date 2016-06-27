@@ -41,10 +41,14 @@ class SignUpViewController: UIViewController {
         let userfirstName = self.firstNameTextField.text
         let userlastName = self.lastNameTextField.text
         
-        if(userEmail!.isEmpty || userPassword!.isEmpty || userConfirmPasswordTextField!.isEmpty || userfirstName!.isEmpty || userlastName!.isEmpty) {            
+        if(userEmail!.isEmpty || userPassword!.isEmpty || userConfirmPasswordTextField!.isEmpty || userfirstName!.isEmpty || userlastName!.isEmpty) {
             ReusableFunctions.displayAlertMessage("All fields are mandatory", viewController: self)
             return
         }
+        
+        let spiningActivity = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        spiningActivity.label.text = "Loading"
+        spiningActivity.detailsLabel.text = "Please wait"
         
         if(userPassword != userConfirmPasswordTextField) {
             ReusableFunctions.displayAlertMessage("Password Do not Match", viewController: self)
@@ -61,6 +65,7 @@ class SignUpViewController: UIViewController {
         NSURLSession.sharedSession().dataTaskWithRequest(request) {
             (data, response, error) in
             do {
+                
                 guard let data = data else {
                     throw JSONError.NoData
                 }
@@ -71,11 +76,16 @@ class SignUpViewController: UIViewController {
                 if let parsedJson: NSDictionary = json {
                     let userId = parsedJson["userId"] as? String
                     if (userId != nil) {
-                        let alert = UIAlertController(title: "Registration Successful", message: parsedJson["message"] as? String, preferredStyle: UIAlertControllerStyle.Alert)
+                        let alert = UIAlertController(title: "Registration Successful.Please Login!", message: parsedJson["message"] as? String, preferredStyle: UIAlertControllerStyle.Alert)
                         
-                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {
+                            action in
+                            let launchLoginScreen = self.storyboard?.instantiateViewControllerWithIdentifier("LoginViewController")
+                            self.presentViewController(launchLoginScreen!, animated: true, completion: nil)
+                        }));
                         
                         NSOperationQueue.mainQueue().addOperationWithBlock {
+                            spiningActivity.hideAnimated(true)
                             self.presentViewController(alert, animated: true, completion: nil)
                         }
                     }else {
@@ -88,12 +98,13 @@ class SignUpViewController: UIViewController {
                         }
                     }
                 }
-                
             } catch let error as JSONError {
+                spiningActivity.hideAnimated(true)
                 print(error.rawValue)
             } catch let error as NSError {
+                spiningActivity.hideAnimated(true)
                 print(error.debugDescription)
             }
-            }.resume()
+        }.resume()
     }
 }

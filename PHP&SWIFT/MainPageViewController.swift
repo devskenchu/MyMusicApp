@@ -18,11 +18,36 @@ class MainPageViewController: UIViewController, UIImagePickerControllerDelegate,
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.userImage.layer.cornerRadius = self.userImage.frame.width / 4
+        self.userImage.clipsToBounds = true
+    }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
         let userFirstName = NSUserDefaults.standardUserDefaults().stringForKey("userFirstName")
         let userLastName = NSUserDefaults.standardUserDefaults().stringForKey("userLastName")
         
         let userFullName = userFirstName! + " " + userLastName!
         userDetail.text = userFullName
+        
+        if(userImage.image == nil) {
+            let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")
+            
+            let fileName = userId! + ".jpg"
+            
+            let imageUrlPath = NSURL(string: "http://localhost/SwiftPHP/Profile_Pic/\(userId!)/\(fileName)")
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                let imageData = NSData(contentsOfURL: imageUrlPath!)
+                if imageData != nil {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.userImage.image = UIImage(data: imageData!)
+                    })
+                }
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -58,8 +83,8 @@ class MainPageViewController: UIViewController, UIImagePickerControllerDelegate,
         let userId:String? = NSUserDefaults.standardUserDefaults().stringForKey("userId")
         
         let param = [
-                "userId" : userId!
-            ]
+            "userId" : userId!
+        ]
         
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         
@@ -98,18 +123,23 @@ class MainPageViewController: UIViewController, UIImagePickerControllerDelegate,
         body.appendData("\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
         body.appendData("--\(boundary)--\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
         request.HTTPBody = body
-        
+         
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) {
             (
             let data, let response, let error) in
+            dispatch_async(dispatch_get_main_queue(), {
+
+                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+                
+            });
             
             guard let _:NSData = data, let _:NSURLResponse = response  where error == nil else {
-                print("error")
-                return
+            ReusableFunctions.displayAlertMessage("Profile Image Failed to Upload. Try Again!", viewController: self)
+            return
             }
-            let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
-            print(dataString)
+
+            ReusableFunctions.displayAlertMessage("Profile Image Uploaded Successfully!", viewController: self)
         }
         task.resume()
     }
@@ -131,6 +161,13 @@ class MainPageViewController: UIViewController, UIImagePickerControllerDelegate,
         
         let appDelegate = UIApplication.sharedApplication().delegate
         appDelegate?.window??.rootViewController = signInNav
+    }
+    
+    @IBAction func leftSideMenuTapped(sender: AnyObject) {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        appDelegate.drawerController?.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
     }
 }
 

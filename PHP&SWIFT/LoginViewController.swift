@@ -34,7 +34,13 @@ class LoginViewController: UIViewController {
         
         if(email!.isEmpty || password!.isEmpty){
             ReusableFunctions.displayAlertMessage("Enter all Fields", viewController: self)
+            return
         }
+        
+        let spiningActivity = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        spiningActivity.label.text = "Loading"
+        spiningActivity.detailsLabel.text = "Please wait"
+        
         
         let url = NSURL(string: "http://localhost/SwiftPHP/scripts/UserSignIn.php")
         let request = NSMutableURLRequest(URL: url!)
@@ -55,25 +61,28 @@ class LoginViewController: UIViewController {
                 }
                 
                 if let parsedJson: NSDictionary = json {
-                    
                     if parsedJson["userId"] != nil{
                         NSUserDefaults.standardUserDefaults().setObject(parsedJson["userFirstName"], forKey: "userFirstName")
                         NSUserDefaults.standardUserDefaults().setObject(parsedJson["userLastName"], forKey: "userLastName")
                            NSUserDefaults.standardUserDefaults().setObject(parsedJson["userId"], forKey: "userId")
                         NSUserDefaults.standardUserDefaults().synchronize()
                         
-                        let mainPage = self.storyboard?.instantiateViewControllerWithIdentifier("MainPageViewController") as! MainPageViewController
-                        
-                        let mainPageNav = UINavigationController(rootViewController: mainPage)
+//                        let mainPage = self.storyboard?.instantiateViewControllerWithIdentifier("MainPageViewController") as! MainPageViewController
+//                        
+//                        let mainPageNav = UINavigationController(rootViewController: mainPage)
+//                        NSOperationQueue.mainQueue().addOperationWithBlock({
+//                            spiningActivity.hideAnimated(true)
+//                            let appDelegate = UIApplication.sharedApplication().delegate
+//                            appDelegate?.window??.rootViewController = mainPageNav
+                    //})
                         NSOperationQueue.mainQueue().addOperationWithBlock({
-                            
-                            let appDelegate = UIApplication.sharedApplication().delegate
-                            appDelegate?.window??.rootViewController = mainPageNav
-                            
-                        })
-                        
+                        spiningActivity.hideAnimated(true)
+                        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                        appDelegate.buildNavigationDrawer()
+                    })
                     }else {
                         NSOperationQueue.mainQueue().addOperationWithBlock({
+                            spiningActivity.hideAnimated(true)
                             ReusableFunctions.displayAlertMessage(parsedJson["message"] as! String, viewController: self)
                         })
                     }
