@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C344DC91D1BE48D00AEF15A /* ReusableFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C344DC81D1BE48D00AEF15A /* ReusableFunctions.swift */; };
+		1C344DCE1D1BF9AB00AEF15A /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C344DCD1D1BF9AB00AEF15A /* MainPageViewController.swift */; };
 		1C8198041CE9C1CD00FE44C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8198031CE9C1CD00FE44C6 /* AppDelegate.swift */; };
-		1C8198061CE9C1CD00FE44C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8198051CE9C1CD00FE44C6 /* ViewController.swift */; };
+		1C8198061CE9C1CD00FE44C6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8198051CE9C1CD00FE44C6 /* LoginViewController.swift */; };
 		1C8198091CE9C1CD00FE44C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C8198071CE9C1CD00FE44C6 /* Main.storyboard */; };
 		1C81980B1CE9C1CD00FE44C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C81980A1CE9C1CD00FE44C6 /* Assets.xcassets */; };
 		1C81980E1CE9C1CD00FE44C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C81980C1CE9C1CD00FE44C6 /* LaunchScreen.storyboard */; };
 		1C8198191CE9C1CD00FE44C6 /* PHP_SWIFTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8198181CE9C1CD00FE44C6 /* PHP_SWIFTTests.swift */; };
 		1C8198241CE9C1CD00FE44C6 /* PHP_SWIFTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8198231CE9C1CD00FE44C6 /* PHP_SWIFTUITests.swift */; };
+		1C8198321CE9CDDA00FE44C6 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8198311CE9CDDA00FE44C6 /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +37,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C344DC81D1BE48D00AEF15A /* ReusableFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableFunctions.swift; sourceTree = "<group>"; };
+		1C344DCD1D1BF9AB00AEF15A /* MainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		1C8198001CE9C1CD00FE44C6 /* PHP&SWIFT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PHP&SWIFT.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C8198031CE9C1CD00FE44C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1C8198051CE9C1CD00FE44C6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1C8198051CE9C1CD00FE44C6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1C8198081CE9C1CD00FE44C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1C81980A1CE9C1CD00FE44C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1C81980D1CE9C1CD00FE44C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +52,7 @@
 		1C81981F1CE9C1CD00FE44C6 /* PHP&SWIFTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PHP&SWIFTUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C8198231CE9C1CD00FE44C6 /* PHP_SWIFTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHP_SWIFTUITests.swift; sourceTree = "<group>"; };
 		1C8198251CE9C1CD00FE44C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1C8198311CE9CDDA00FE44C6 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +104,10 @@
 			isa = PBXGroup;
 			children = (
 				1C8198031CE9C1CD00FE44C6 /* AppDelegate.swift */,
-				1C8198051CE9C1CD00FE44C6 /* ViewController.swift */,
+				1C344DC81D1BE48D00AEF15A /* ReusableFunctions.swift */,
+				1C8198051CE9C1CD00FE44C6 /* LoginViewController.swift */,
+				1C8198311CE9CDDA00FE44C6 /* SignUpViewController.swift */,
+				1C344DCD1D1BF9AB00AEF15A /* MainPageViewController.swift */,
 				1C8198071CE9C1CD00FE44C6 /* Main.storyboard */,
 				1C81980A1CE9C1CD00FE44C6 /* Assets.xcassets */,
 				1C81980C1CE9C1CD00FE44C6 /* LaunchScreen.storyboard */,
@@ -256,7 +265,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C8198061CE9C1CD00FE44C6 /* ViewController.swift in Sources */,
+				1C344DCE1D1BF9AB00AEF15A /* MainPageViewController.swift in Sources */,
+				1C8198321CE9CDDA00FE44C6 /* SignUpViewController.swift in Sources */,
+				1C8198061CE9C1CD00FE44C6 /* LoginViewController.swift in Sources */,
+				1C344DC91D1BE48D00AEF15A /* ReusableFunctions.swift in Sources */,
 				1C8198041CE9C1CD00FE44C6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,6 +496,7 @@
 				1C81982A1CE9C1CD00FE44C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1C81982B1CE9C1CD00FE44C6 /* Build configuration list for PBXNativeTarget "PHP&SWIFTTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +505,7 @@
 				1C81982D1CE9C1CD00FE44C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1C81982E1CE9C1CD00FE44C6 /* Build configuration list for PBXNativeTarget "PHP&SWIFTUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +514,7 @@
 				1C8198301CE9C1CD00FE44C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
