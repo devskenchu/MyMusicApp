@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C112BF81D23C4D000F4FDEB /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C112BF71D23C4D000F4FDEB /* PasswordResetViewController.swift */; };
+		1C112BFA1D23C8E000F4FDEB /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C112BF91D23C8E000F4FDEB /* APIManager.swift */; };
 		1C1155981D210D9D00650515 /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1155901D210D9D00650515 /* MMDrawerBarButtonItem.m */; };
 		1C1155991D210D9D00650515 /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1155921D210D9D00650515 /* MMDrawerController.m */; };
 		1C11559A1D210D9D00650515 /* MMDrawerVisualState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C1155951D210D9D00650515 /* MMDrawerVisualState.m */; };
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C112BF71D23C4D000F4FDEB /* PasswordResetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
+		1C112BF91D23C8E000F4FDEB /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		1C11558F1D210D9D00650515 /* MMDrawerBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerBarButtonItem.h; sourceTree = "<group>"; };
 		1C1155901D210D9D00650515 /* MMDrawerBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerBarButtonItem.m; sourceTree = "<group>"; };
 		1C1155911D210D9D00650515 /* MMDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerController.h; sourceTree = "<group>"; };
@@ -103,6 +107,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C112BFB1D23C92200F4FDEB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1C112BF91D23C8E000F4FDEB /* APIManager.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		1C112BFC1D23C92A00F4FDEB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1C8198071CE9C1CD00FE44C6 /* Main.storyboard */,
+				1C81980C1CE9C1CD00FE44C6 /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		1C112BFD1D23C93900F4FDEB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1C11559C1D211A7000650515 /* LeftSideViewController.swift */,
+				1C11559E1D211B4300650515 /* RightSideViewController.swift */,
+				1C8198311CE9CDDA00FE44C6 /* SignUpViewController.swift */,
+				1C344DCD1D1BF9AB00AEF15A /* MainPageViewController.swift */,
+				1C1155A01D21227000650515 /* AboutViewController.swift */,
+				1C112BF71D23C4D000F4FDEB /* PasswordResetViewController.swift */,
+				1C8198051CE9C1CD00FE44C6 /* LoginViewController.swift */,
+				1C8198031CE9C1CD00FE44C6 /* AppDelegate.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		1C112BFE1D23C96400F4FDEB /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				1C344DC81D1BE48D00AEF15A /* ReusableFunctions.swift */,
+			);
+			name = Commons;
+			sourceTree = "<group>";
+		};
 		1C11558D1D210D3C00650515 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,18 +205,12 @@
 		1C8198021CE9C1CD00FE44C6 /* PHP&SWIFT */ = {
 			isa = PBXGroup;
 			children = (
-				1C8198031CE9C1CD00FE44C6 /* AppDelegate.swift */,
-				1C344DC81D1BE48D00AEF15A /* ReusableFunctions.swift */,
-				1C8198051CE9C1CD00FE44C6 /* LoginViewController.swift */,
-				1C11559C1D211A7000650515 /* LeftSideViewController.swift */,
-				1C11559E1D211B4300650515 /* RightSideViewController.swift */,
-				1C8198311CE9CDDA00FE44C6 /* SignUpViewController.swift */,
-				1C344DCD1D1BF9AB00AEF15A /* MainPageViewController.swift */,
-				1C1155A01D21227000650515 /* AboutViewController.swift */,
+				1C112BFD1D23C93900F4FDEB /* Controller */,
+				1C112BFC1D23C92A00F4FDEB /* View */,
+				1C112BFB1D23C92200F4FDEB /* Model */,
+				1C112BFE1D23C96400F4FDEB /* Commons */,
 				1C2C58271D20F8F9004238D3 /* Third Party */,
-				1C8198071CE9C1CD00FE44C6 /* Main.storyboard */,
 				1C81980A1CE9C1CD00FE44C6 /* Assets.xcassets */,
-				1C81980C1CE9C1CD00FE44C6 /* LaunchScreen.storyboard */,
 				1C81980F1CE9C1CD00FE44C6 /* Info.plist */,
 			);
 			path = "PHP&SWIFT";
@@ -336,8 +374,10 @@
 				1C8198321CE9CDDA00FE44C6 /* SignUpViewController.swift in Sources */,
 				1C8198061CE9C1CD00FE44C6 /* LoginViewController.swift in Sources */,
 				1C344DC91D1BE48D00AEF15A /* ReusableFunctions.swift in Sources */,
+				1C112BF81D23C4D000F4FDEB /* PasswordResetViewController.swift in Sources */,
 				1C8198041CE9C1CD00FE44C6 /* AppDelegate.swift in Sources */,
 				1C11559F1D211B4300650515 /* RightSideViewController.swift in Sources */,
+				1C112BFA1D23C8E000F4FDEB /* APIManager.swift in Sources */,
 				1C1155A11D21227000650515 /* AboutViewController.swift in Sources */,
 				1C1155981D210D9D00650515 /* MMDrawerBarButtonItem.m in Sources */,
 			);

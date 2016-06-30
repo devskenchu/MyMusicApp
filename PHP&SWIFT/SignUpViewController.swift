@@ -51,6 +51,7 @@ class SignUpViewController: UIViewController {
         spiningActivity.detailsLabel.text = "Please wait"
         
         if(userPassword != userConfirmPasswordTextField) {
+            spiningActivity.hideAnimated(true)
             ReusableFunctions.displayAlertMessage("Password Do not Match", viewController: self)
             return
         }
@@ -65,7 +66,6 @@ class SignUpViewController: UIViewController {
         NSURLSession.sharedSession().dataTaskWithRequest(request) {
             (data, response, error) in
             do {
-                
                 guard let data = data else {
                     throw JSONError.NoData
                 }
@@ -94,16 +94,32 @@ class SignUpViewController: UIViewController {
                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
                         
                         NSOperationQueue.mainQueue().addOperationWithBlock {
+                            spiningActivity.hideAnimated(true)
                             self.presentViewController(alert, animated: true, completion: nil)
                         }
                     }
                 }
             } catch let error as JSONError {
-                spiningActivity.hideAnimated(true)
-                print(error.rawValue)
+                
+                let alert = UIAlertController(title: "Registration Error", message: error.rawValue, preferredStyle: UIAlertControllerStyle.Alert)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                
+                NSOperationQueue.mainQueue().addOperationWithBlock {
+                    spiningActivity.hideAnimated(true)
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
+                //print(error.rawValue)
             } catch let error as NSError {
-                spiningActivity.hideAnimated(true)
-                print(error.debugDescription)
+                let alert = UIAlertController(title: "Registration Error", message: error.debugDescription, preferredStyle: UIAlertControllerStyle.Alert)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                
+                NSOperationQueue.mainQueue().addOperationWithBlock {
+                    spiningActivity.hideAnimated(true)
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
+               // print(error.debugDescription)
             }
         }.resume()
     }
